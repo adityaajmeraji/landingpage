@@ -131,6 +131,49 @@
             </div>
         </div>
     </section>
+    <section>
+        <div class="scroll-container">
+            <img alt="Dr. Shivanii Mehn Om" src="WhatsApp Image 2026-09-27 at 12.30.14.jpeg">
+            <img alt="Dr. Shivanii Mehn Om" src="WhatsApp Image 2026-09-27 at 12.30.14.jpeg">
+            <img alt="Dr. Shivanii Mehn Om" src="WhatsApp Image 2026-09-27 at 12.30.14.jpeg">
+            <img alt="Dr. Shivanii Mehn Om" src="WhatsApp Image 2026-09-27 at 12.30.14.jpeg">
+        </div>
+    </section>
+
+    <!-- Aapki website ka footer wagaira yahan rahega -->
+
+    <!-- STEP 3: Yahan sabse niche JavaScript dalein, </body> close hone se theek pehle -->
+    <script>
+        const slider = document.querySelector('.scroll-container');
+        let isDown = false;
+        let startX;
+        let scrollLeft;
+
+        slider.addEventListener('mousedown', (e) => {
+            isDown = true;
+            startX = e.pageX - slider.offsetLeft;
+            scrollLeft = slider.scrollLeft;
+            slider.style.cursor = 'grabbing';
+        });
+
+        slider.addEventListener('mouseleave', () => {
+            isDown = false;
+            slider.style.cursor = 'grab';
+        });
+
+        slider.addEventListener('mouseup', () => {
+            isDown = false;
+            slider.style.cursor = 'grab';
+        });
+
+        slider.addEventListener('mousemove', (e) => {
+            if (!isDown) return;
+            e.preventDefault();
+            const x = e.pageX - slider.offsetLeft;
+            const walk = (x - startX) * 2; 
+            slider.scrollLeft = scrollLeft - walk;
+        });
+    </script>
 
 
     <!-- Footer / Contact Section -->
