@@ -332,47 +332,74 @@ section {
         font-size: 1.1em;
     }
 
-.scroll-container {
+.slider-wrapper {
+    position: relative; /* Arrows ko iske andar set karne ke liye */
+    max-width: 1000px; /* Slider ki maximum chaudayi, ise change kar sakte hain */
+    margin: 0 auto; /* Center me lane ke liye */
     display: flex;
-    overflow-x: auto; /* Horizontal scroll on karega */
-    gap: 20px; /* Images ke beech ka fasla */
-    padding: 20px; /* Container ke andar ki jagah */
-    
-    /* Scroll properties */
-    scroll-behavior: smooth;
-    -ms-overflow-style: none; /* IE aur Edge */
-    scrollbar-width: none; /* Firefox */
-    
-    /* Dragging settings */
-    cursor: grab;
-    user-select: none; /* Text/Image selection roke */
-    
-    /* NAYI LINE: Container ko puri width lene den */
-    width: 100%;
-    box-sizing: border-box;
+    align-items: center;
 }
 
-/* Scrollbar hide karein Chrome/Safari me */
+/* Scroll Container */
+.scroll-container {
+    display: flex;
+    overflow-x: auto;
+    gap: 20px;
+    padding: 10px;
+    scroll-behavior: smooth; /* Click karne par smoothly slide hoga */
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    width: 100%;
+}
 .scroll-container::-webkit-scrollbar {
     display: none;
 }
 
-.scroll-container:active {
-    cursor: grabbing;
+/* Images */
+.scroll-container img {
+    flex: 0 0 auto;
+    width: 300px; /* Image ka size */
+    height: 300px;
+    object-fit: cover;
+    border-radius: 12px;
 }
 
-/* Images ka size */
-.scroll-container img {
-    /* NAYI LINE: flex: 0 0 auto bohot zaroori hai taki image dab na jaye (shrink na ho) */
-    flex: 0 0 auto; 
-    
-    /* NAYI LINE: Width badhayi gayi hai taki screen se bahar jaye aur scroll karna pade */
-    width: 350px; /* Aap ise 400px ya 300px kar ke dekh sakte hain */
-    height: 350px; 
-    
-    object-fit: cover;
-    border-radius: 15px; /* Thoda aur rounded borders */
-    pointer-events: none; /* Image ke default drag ko roke */
-    box-shadow: 0 5px 15px rgba(0,0,0,0.3); /* Thodi shadow di hai 3D look ke liye */
+/* Arrows ki Styling */
+.slide-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.6); /* Translucent black background */
+    color: white;
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%; /* Gol button banane ke liye */
+    font-size: 20px;
+    cursor: pointer;
+    z-index: 10; /* Images ke upar dikhane ke liye */
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
+
+.slide-arrow:hover {
+    background-color: rgba(0, 0, 0, 0.9); /* Mouse aane par dark ho jayega */
 }
+
+/* Arrows ki position */
+.left-arrow {
+    left: -20px; /* Container ke thoda bahar left me */
+}
+
+.right-arrow {
+    right: -20px; /* Container ke thoda bahar right me */
+}
+
+/* Mobile par arrows chhipane ke liye (Kyunki wahan touch chalta hai) */
+@media (max-width: 768px) {
+    .slide-arrow {
+        display: none;
+    }
+}
+
