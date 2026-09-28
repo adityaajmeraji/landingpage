@@ -116,48 +116,87 @@
             </div>
         </div>
     </section>
-    <section  class="mentor-section">
-        <div class="slider-wrapper">
-        
-        <!-- Left Arrow Button -->
-            <button class="slide-arrow left-arrow">&#10094;</button>
-
-        <!-- Aapka Purana Container -->
-            <div class="scroll-container">
-                <img alt="Dr. Shivanii Mehn Om" src="WhatsApp Image 2026-09-27 at 12.30.14.jpeg">
-                <img alt="Dr. Shivanii Mehn Om" src="WhatsApp Image 2026-09-27 at 12.30.14.jpeg">
-                <img alt="Dr. Shivanii Mehn Om" src="WhatsApp Image 2026-09-27 at 12.30.14.jpeg">
-                <img alt="Dr. Shivanii Mehn Om" src="WhatsApp Image 2026-09-27 at 12.30.14.jpeg">
-            </div>
-
-        <!-- Right Arrow Button -->
-        <button class="slide-arrow right-arrow">&#10095;</button>
-        
-    </div>
-</section>
+   <section style="background-color: #0b2b22; padding: 50px 0;"> <!-- Dark green background -->
+    <h2 style="text-align: center; color: white; margin-bottom: 30px;">Real Transformation Stories</h2>
     
+    <div class="slider-wrapper">
+        
+        <!-- Images Container -->
+        <div class="scroll-container" id="mySlider">
+            <div class="card">
+                <img alt="Story 1" src="WhatsApp Image 2026-09-27 at 12.30.14.jpeg">
+            </div>
+            <div class="card">
+                <img alt="Story 2" src="WhatsApp Image 2026-09-27 at 12.30.14.jpeg">
+            </div>
+            <div class="card">
+                <img alt="Story 3" src="WhatsApp Image 2026-09-27 at 12.30.14.jpeg">
+            </div>
+            <div class="card">
+                <img alt="Story 4" src="WhatsApp Image 2026-09-27 at 12.30.14.jpeg">
+            </div>
+        </div>
+
+        <!-- Bottom Controls (Arrows and Dots) -->
+        <div class="slider-controls">
+            <!-- Left Arrow -->
+            <button class="nav-btn prev-btn">&#10094;</button>
+            
+            <!-- Pagination Dots -->
+            <div class="pagination">
+                <span class="dot active"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+            </div>
+            
+            <!-- Right Arrow -->
+            <button class="nav-btn next-btn">&#10095;</button>
+        </div>
+
+    </div>
+</section> 
     <!-- Aapki website ka footer wagaira yahan rahega -->
 
     <!-- STEP 3: Yahan sabse niche JavaScript dalein, </body> close hone se theek pehle -->
     <script>
-    const container = document.querySelector('.scroll-container');
-    const leftArrow = document.querySelector('.left-arrow');
-    const rightArrow = document.querySelector('.right-arrow');
+    const slider = document.getElementById('mySlider');
+    const prevBtn = document.querySelector('.prev-btn');
+    const nextBtn = document.querySelector('.next-btn');
+    const dots = document.querySelectorAll('.dot');
 
-    // Right Arrow pe click karne par
-    rightArrow.addEventListener('click', () => {
-        // Ek image ki width + gap nikalte hain (300px width + 20px gap = 320)
-        const slideAmount = 320; 
-        container.scrollBy({ left: slideAmount, behavior: 'smooth' });
+    // Image Width + Gap = total scroll amount (280px width + 20px gap = 300)
+    const scrollAmount = 300; 
+
+    // Left Arrow Click
+    prevBtn.addEventListener('click', () => {
+        slider.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
     });
 
-    // Left Arrow pe click karne par
-    leftArrow.addEventListener('click', () => {
-        const slideAmount = 320;
-        container.scrollBy({ left: -slideAmount, behavior: 'smooth' });
+    // Right Arrow Click
+    nextBtn.addEventListener('click', () => {
+        slider.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+    });
+
+    // Scroll hone par Dots ko update karna
+    slider.addEventListener('scroll', () => {
+        // Find current card index
+        let index = Math.round(slider.scrollLeft / scrollAmount);
+        
+        // Ensure index doesn't break
+        if (index < 0) index = 0;
+        if (index >= dots.length) index = dots.length - 1;
+
+        // Sabhi dots se 'active' class hatayein
+        dots.forEach(dot => dot.classList.remove('active'));
+        
+        // Sirf us dot par 'active' class lagayein jo image samne hai
+        dots[index].classList.add('active');
     });
 </script>
 
+
+    
     <!-- Footer / Contact Section -->
     <footer class="footer-section">
         <h2 class="gold-text">Step Into The Next Level</h2>
