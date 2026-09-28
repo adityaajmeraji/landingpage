@@ -331,26 +331,48 @@ section {
     .date-place-box {
         font-size: 1.1em;
     }
-}
-scroll-container {
-            display: flex;
-            overflow-x: auto;
-            gap: 15px;
-            padding: 10px;
-            scroll-behavior: smooth;
-            -ms-overflow-style: none;
-            scrollbar-width: none;
+
+.scroll-container {
+    display: flex;
+    overflow-x: auto; /* Horizontal scroll on karega */
+    gap: 20px; /* Images ke beech ka fasla */
+    padding: 20px; /* Container ke andar ki jagah */
+    
+    /* Scroll properties */
+    scroll-behavior: smooth;
+    -ms-overflow-style: none; /* IE aur Edge */
+    scrollbar-width: none; /* Firefox */
+    
+    /* Dragging settings */
+    cursor: grab;
+    user-select: none; /* Text/Image selection roke */
+    
+    /* NAYI LINE: Container ko puri width lene den */
+    width: 100%;
+    box-sizing: border-box;
 }
 
+/* Scrollbar hide karein Chrome/Safari me */
 .scroll-container::-webkit-scrollbar {
-            display: none;
+    display: none;
 }
 
+.scroll-container:active {
+    cursor: grabbing;
+}
+
+/* Images ka size */
 .scroll-container img {
-            flex: 0 0 auto;
-            width: 250px; /* Aap ise apne hisaab se change kar sakte hain */
-            height: 250px; 
-            object-fit: cover;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    /* NAYI LINE: flex: 0 0 auto bohot zaroori hai taki image dab na jaye (shrink na ho) */
+    flex: 0 0 auto; 
+    
+    /* NAYI LINE: Width badhayi gayi hai taki screen se bahar jaye aur scroll karna pade */
+    width: 350px; /* Aap ise 400px ya 300px kar ke dekh sakte hain */
+    height: 350px; 
+    
+    object-fit: cover;
+    border-radius: 15px; /* Thoda aur rounded borders */
+    pointer-events: none; /* Image ke default drag ko roke */
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3); /* Thodi shadow di hai 3D look ke liye */
+}
 }
