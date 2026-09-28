@@ -332,12 +332,12 @@ section {
         font-size: 1.1em;
     }
 
+
+/* Slider Wrapper */
 .slider-wrapper {
-    position: relative; /* Arrows ko iske andar set karne ke liye */
-    max-width: 1000px; /* Slider ki maximum chaudayi, ise change kar sakte hain */
-    margin: 0 auto; /* Center me lane ke liye */
-    display: flex;
-    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
 }
 
 /* Scroll Container */
@@ -345,61 +345,82 @@ section {
     display: flex;
     overflow-x: auto;
     gap: 20px;
-    padding: 10px;
-    scroll-behavior: smooth; /* Click karne par smoothly slide hoga */
+    padding-bottom: 20px;
+    scroll-behavior: smooth;
+    /* Scroll snap se image exactly center me rukegi */
+    scroll-snap-type: x mandatory; 
     -ms-overflow-style: none;
     scrollbar-width: none;
-    width: 100%;
 }
 .scroll-container::-webkit-scrollbar {
     display: none;
 }
 
-/* Images */
-.scroll-container img {
+/* Har ek Image Card ka design (Portrait Mode) */
+.card {
     flex: 0 0 auto;
-    width: 300px; /* Image ka size */
-    height: 300px;
-    object-fit: cover;
-    border-radius: 12px;
+    width: 280px; /* Mobile screen jaisi chaudayi */
+    height: 480px; /* Lamba height jaisa screenshot me hai */
+    border-radius: 15px;
+    overflow: hidden;
+    scroll-snap-align: center; /* Center me snap karne ke liye */
+    background-color: #000;
 }
 
-/* Arrows ki Styling */
-.slide-arrow {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background-color: rgba(0, 0, 0, 0.6); /* Translucent black background */
-    color: white;
-    border: none;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%; /* Gol button banane ke liye */
-    font-size: 20px;
-    cursor: pointer;
-    z-index: 10; /* Images ke upar dikhane ke liye */
+.card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* ====== Niche ke Controls (Arrows & Dots) ====== */
+.slider-controls {
     display: flex;
     justify-content: center;
     align-items: center;
+    gap: 20px;
+    margin-top: 20px;
 }
 
-.slide-arrow:hover {
-    background-color: rgba(0, 0, 0, 0.9); /* Mouse aane par dark ho jayega */
+/* Left & Right Button Design */
+.nav-btn {
+    background: transparent;
+    border: 1px solid #4a6659; /* Screenshot jaisa border */
+    color: #4a6659;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%; /* Gol button */
+    font-size: 16px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 0.3s;
 }
 
-/* Arrows ki position */
-.left-arrow {
-    left: -20px; /* Container ke thoda bahar left me */
+.nav-btn:hover {
+    border-color: #e2b938; /* Hover par golden */
+    color: #e2b938;
 }
 
-.right-arrow {
-    right: -20px; /* Container ke thoda bahar right me */
+/* Dots ka design */
+.pagination {
+    display: flex;
+    gap: 8px;
+    align-items: center;
 }
 
-/* Mobile par arrows chhipane ke liye (Kyunki wahan touch chalta hai) */
-@media (max-width: 768px) {
-    .slide-arrow {
-        display: none;
-    }
+.dot {
+    width: 8px;
+    height: 8px;
+    background-color: #4a6659;
+    border-radius: 10px;
+    transition: 0.3s;
+}
+
+/* Jo image samne hai, uska dot lamba aur golden ho jayega */
+.dot.active {
+    width: 25px; 
+    background-color: #e2b938; 
 }
 
