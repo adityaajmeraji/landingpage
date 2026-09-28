@@ -132,49 +132,46 @@
         </div>
     </section>
     <section>
-        <div class="scroll-container">
-            <img alt="Dr. Shivanii Mehn Om" src="WhatsApp Image 2026-09-27 at 12.30.14.jpeg">
-            <img alt="Dr. Shivanii Mehn Om" src="WhatsApp Image 2026-09-27 at 12.30.14.jpeg">
-            <img alt="Dr. Shivanii Mehn Om" src="WhatsApp Image 2026-09-27 at 12.30.14.jpeg">
-            <img alt="Dr. Shivanii Mehn Om" src="WhatsApp Image 2026-09-27 at 12.30.14.jpeg">
-        </div>
-    </section>
+        <div class="slider-wrapper">
+        
+        <!-- Left Arrow Button -->
+            <button class="slide-arrow left-arrow">&#10094;</button>
 
+        <!-- Aapka Purana Container -->
+            <div class="scroll-container">
+                <img alt="Dr. Shivanii Mehn Om" src="WhatsApp Image 2026-09-27 at 12.30.14.jpeg">
+                <img alt="Dr. Shivanii Mehn Om" src="WhatsApp Image 2026-09-27 at 12.30.14.jpeg">
+                <img alt="Dr. Shivanii Mehn Om" src="WhatsApp Image 2026-09-27 at 12.30.14.jpeg">
+                <img alt="Dr. Shivanii Mehn Om" src="WhatsApp Image 2026-09-27 at 12.30.14.jpeg">
+            </div>
+
+        <!-- Right Arrow Button -->
+        <button class="slide-arrow right-arrow">&#10095;</button>
+        
+    </div>
+</section>
+    
     <!-- Aapki website ka footer wagaira yahan rahega -->
 
     <!-- STEP 3: Yahan sabse niche JavaScript dalein, </body> close hone se theek pehle -->
     <script>
-        const slider = document.querySelector('.scroll-container');
-        let isDown = false;
-        let startX;
-        let scrollLeft;
+    const container = document.querySelector('.scroll-container');
+    const leftArrow = document.querySelector('.left-arrow');
+    const rightArrow = document.querySelector('.right-arrow');
 
-        slider.addEventListener('mousedown', (e) => {
-            isDown = true;
-            startX = e.pageX - slider.offsetLeft;
-            scrollLeft = slider.scrollLeft;
-            slider.style.cursor = 'grabbing';
-        });
+    // Right Arrow pe click karne par
+    rightArrow.addEventListener('click', () => {
+        // Ek image ki width + gap nikalte hain (300px width + 20px gap = 320)
+        const slideAmount = 320; 
+        container.scrollBy({ left: slideAmount, behavior: 'smooth' });
+    });
 
-        slider.addEventListener('mouseleave', () => {
-            isDown = false;
-            slider.style.cursor = 'grab';
-        });
-
-        slider.addEventListener('mouseup', () => {
-            isDown = false;
-            slider.style.cursor = 'grab';
-        });
-
-        slider.addEventListener('mousemove', (e) => {
-            if (!isDown) return;
-            e.preventDefault();
-            const x = e.pageX - slider.offsetLeft;
-            const walk = (x - startX) * 2; 
-            slider.scrollLeft = scrollLeft - walk;
-        });
-    </script>
-
+    // Left Arrow pe click karne par
+    leftArrow.addEventListener('click', () => {
+        const slideAmount = 320;
+        container.scrollBy({ left: -slideAmount, behavior: 'smooth' });
+    });
+</script>
 
     <!-- Footer / Contact Section -->
     <footer class="footer-section">
