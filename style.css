@@ -52,12 +52,11 @@ h1, h2, h3, h4 {
 .main-logo {
     width: 120px;
     filter: drop-shadow(0 0 10px rgba(249, 217, 118, 0.5));
-    
 }
 
 .shiny-header h1 {
     font-size: 2.8em;
-    margin: 05px 0 0 0;
+    margin: 5px 0 0 0;
 }
 
 .tagline {
@@ -179,7 +178,7 @@ section {
     gap: 30px;
 }
 
-.cards {
+.cards, .card {
     background: rgba(20, 61, 41, 0.6);
     border: 1px solid rgba(184, 134, 11, 0.3);
     padding: 30px;
@@ -188,13 +187,13 @@ section {
     transition: transform 0.3s, box-shadow 0.3s;
 }
 
-.shiny-cards:hover, .benefit-cards:hover {
+.shiny-cards:hover, .benefit-cards:hover, .shiny-card:hover, .benefit-card:hover {
     transform: translateY(-10px);
     box-shadow: 0 10px 30px rgba(184, 134, 11, 0.3);
     border-color: var(--gold-light);
 }
 
-.cards h3 {
+.cards h3, .card h3 {
     font-size: 1.5em;
     margin-bottom: 15px;
 }
@@ -294,7 +293,6 @@ section {
     border-top: 3px solid var(--gold-dark);
 }
 
-
 .contact-info {
     font-size: 1.2em;
     margin: 30px 0;
@@ -306,75 +304,62 @@ section {
 
 /* Animations */
 @keyframes fadeInDown {
-    from {
-        opacity: 0;
-        transform: translateY(-30px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+    from { opacity: 0; transform: translateY(-30px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
-/* Responsive */
+/* ========================================================= */
+/* Responsive - (Yahan bracket ki galti sudhar di gayi hai) */
+/* ========================================================= */
 @media (max-width: 768px) {
-    .main-title {
-        font-size: 2.5em;
-    }
-    .mentor-container {
-        padding: 30px 15px;
-        text-align: center;
-    }
-    .mentor-info ul li {
-        text-align: left;
-    }
-    .date-place-box {
-        font-size: 1.1em;
-    }
+    .main-title { font-size: 2.5em; }
+    .mentor-container { padding: 30px 15px; text-align: center; }
+    .mentor-info ul li { text-align: left; }
+    .date-place-box { font-size: 1.1em; }
+}
 
-
-/* Slider Wrapper */
+/* ========================================================= */
+/* Slider Styles */
+/* ========================================================= */
 .slider-wrapper {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 20px;
 }
 
-/* Scroll Container */
 .scroll-container {
     display: flex;
     overflow-x: auto;
     gap: 20px;
     padding-bottom: 20px;
     scroll-behavior: smooth;
-    /* Scroll snap se image exactly center me rukegi */
     scroll-snap-type: x mandatory; 
     -ms-overflow-style: none;
     scrollbar-width: none;
 }
+
 .scroll-container::-webkit-scrollbar {
     display: none;
 }
-/* Har ek Image Card ka design (Portrait Mode) */
-.card {
+
+.scroll-container .card {
     flex: 0 0 auto;
-    width: 280px; /* Mobile screen jaisi chaudayi */
-    height: 480px; /* Lamba height jaisa screenshot me hai */
+    width: 280px; 
+    height: 480px; 
     border-radius: 15px;
     overflow: hidden;
-    scroll-snap-align: center; /* Center me snap karne ke liye */
+    scroll-snap-align: center;
     background-color: #000;
+    padding: 0; /* Removing padding from standard cards */
+    border: none;
 }
 
-.card img {
+.scroll-container .card img {
     width: 100%;
     height: 100%;
     object-fit: cover;
 }
 
-
-
-/* ====== Niche ke Controls (Arrows & Dots) ====== */
 .slider-controls {
     display: flex;
     justify-content: center;
@@ -383,14 +368,13 @@ section {
     margin-top: 20px;
 }
 
-/* Left & Right Button Design */
 .nav-btn {
     background: transparent;
-    border: 1px solid #4a6659; /* Screenshot jaisa border */
+    border: 1px solid #4a6659; 
     color: #4a6659;
     width: 40px;
     height: 40px;
-    border-radius: 50%; /* Gol button */
+    border-radius: 50%;
     font-size: 16px;
     cursor: pointer;
     display: flex;
@@ -400,11 +384,10 @@ section {
 }
 
 .nav-btn:hover {
-    border-color: #e2b938; /* Hover par golden */
+    border-color: #e2b938; 
     color: #e2b938;
 }
 
-/* Dots ka design */
 .pagination {
     display: flex;
     gap: 8px;
@@ -419,12 +402,14 @@ section {
     transition: 0.3s;
 }
 
-/* Jo image samne hai, uska dot lamba aur golden ho jayega */
 .dot.active {
     width: 25px; 
     background-color: #e2b938; 
 }
-/* Popup Background */
+
+/* ========================================================= */
+/* Popup Styles */
+/* ========================================================= */
 .popup-overlay {
     display: none; 
     position: fixed;
@@ -435,7 +420,7 @@ section {
     align-items: center;
     backdrop-filter: blur(5px);
 }
-/* Popup Box */
+
 .popup-content {
     background-color: white;
     padding: 30px;
@@ -446,6 +431,7 @@ section {
     position: relative;
     box-shadow: 0 10px 30px rgba(0,0,0,0.5);
 }
+
 .close-btn {
     position: absolute;
     top: 10px; right: 15px;
@@ -453,7 +439,13 @@ section {
     cursor: pointer;
     color: #333;
 }
-.popup-content h2 { color: #0b2b22; margin-bottom: 10px; font-family: sans-serif;}
+
+.popup-content h2 { 
+    color: #0b2b22; 
+    margin-bottom: 10px; 
+    font-family: sans-serif;
+}
+
 .popup-content input {
     width: 100%;
     padding: 12px;
@@ -462,6 +454,7 @@ section {
     border-radius: 6px;
     box-sizing: border-box;
 }
+
 .popup-content button {
     width: 100%;
     padding: 12px;
@@ -475,3 +468,6 @@ section {
     margin-top: 10px;
 }
 
+.popup-content button:hover {
+    background-color: #d1a82f;
+}
