@@ -359,7 +359,7 @@ section {
 .card {
     flex: 0 0 auto;
     width: 280px; /* Mobile screen jaisi chaudayi */
-    height: 380px; /* Lamba height jaisa screenshot me hai */
+    height: 480px; /* Lamba height jaisa screenshot me hai */
     border-radius: 15px;
     overflow: hidden;
     scroll-snap-align: center; /* Center me snap karne ke liye */
