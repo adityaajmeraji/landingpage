@@ -355,6 +355,22 @@ section {
 .scroll-container::-webkit-scrollbar {
     display: none;
 }
+/* Har ek Image Card ka design (Portrait Mode) */
+.caard {
+    flex: 0 0 auto;
+    width: 280px; /* Mobile screen jaisi chaudayi */
+    height: 480px; /* Lamba height jaisa screenshot me hai */
+    border-radius: 15px;
+    overflow: hidden;
+    scroll-snap-align: center; /* Center me snap karne ke liye */
+    background-color: #000;
+}
+
+.caard img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
 
 
 
