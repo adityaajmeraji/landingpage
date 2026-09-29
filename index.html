@@ -147,7 +147,7 @@
             <p><strong>Rishikesh Center:</strong> La Casa Bonita, 3rd Floor, Next to Café Prakriti - Upper Tapovan (Rishikesh)-249192</p>
         </div>
         <br>
-        <a href="#" class="glowing-btn">REGISTER NOW</a>
+        <a href="#" id="footerRegisterBtn" class="glowing-btn">REGISTER NOW</a>
     </footer>
 
     <!-- POPUP FORM -->
@@ -189,6 +189,14 @@
         nextBtn.addEventListener('click', () => {
             slider.scrollBy({ left: scrollAmount, behavior: 'smooth' });
         });
+        // Naya Code: Footer button click par popup open karna
+        const footerBtn = document.getElementById('footerRegisterBtn');
+        if (footerBtn) {
+            footerBtn.addEventListener('click', function(e) {
+                e.preventDefault(); // Page ko upar jump karne se rokega
+                popup.style.display = 'flex';
+            });
+        }
 
         slider.addEventListener('scroll', () => {
             let index = Math.round(slider.scrollLeft / scrollAmount);
