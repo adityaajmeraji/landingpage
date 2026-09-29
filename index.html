@@ -10,6 +10,77 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
 <body>
+    <!-- POPUP FORM START -->
+<div id="leadPopup" class="popup-overlay">
+    <div class="popup-content">
+        <span class="close-btn" id="closePopup">&times;</span>
+        <h2>Register Now!</h2>
+        <p>Book your slot before it's full.</p>
+        
+        <form id="googleSheetForm" name="google-sheet-form">
+            <input type="text" name="Name" placeholder="Full Name" required>
+            <input type="tel" name="Phone" placeholder="WhatsApp Number" required>
+            <input type="email" name="Email" placeholder="Email Address" required>
+            <button type="submit" id="submitBtn">Submit</button>
+        </form>
+        
+        <p id="successMsg" style="display:none; color: green; font-weight: bold; margin-top: 10px;">
+            Registration Successful! Thank you.
+        </p>
+    </div>
+</div>
+<!-- POPUP FORM END -->
+    <!-- POPUP JAVASCRIPT START -->
+<script>
+    const popup = document.getElementById('leadPopup');
+    const closeBtn = document.getElementById('closePopup');
+    const form = document.getElementById('googleSheetForm');
+    const submitBtn = document.getElementById('submitBtn');
+    const successMsg = document.getElementById('successMsg');
+
+    // Page khulne ke 1 second (1000ms) baad popup show karega
+    window.onload = function() {
+        setTimeout(function() {
+            popup.style.display = 'flex';
+        }, 1000); 
+    };
+
+    // Close (X) dabane par popup band hoga
+    closeBtn.onclick = function() {
+        popup.style.display = 'none';
+    }
+
+    // YAHAN APNA COPY KIYA HUA GOOGLE URL DALEIN (Inverted commas ke andar hi)
+    const scriptURL = 'MERA_LAMBA_URL_YAHAN_PASTE_KAREIN'; 
+
+    form.addEventListener('submit', e => {
+        e.preventDefault(); 
+        
+        submitBtn.innerHTML = "Submitting...";
+        submitBtn.disabled = true;
+
+        fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+            .then(response => {
+                successMsg.style.display = "block"; 
+                form.reset(); 
+                submitBtn.innerHTML = "Submit";
+                submitBtn.disabled = false;
+                
+                // Form bharne ke 3 second baad popup automatically band ho jayega
+                setTimeout(() => {
+                    popup.style.display = "none";
+                }, 3000);
+            })
+            .catch(error => {
+                console.error('Error!', error.message);
+                submitBtn.innerHTML = "Try Again";
+                submitBtn.disabled = false;
+            });
+    });
+</script>
+<!-- POPUP JAVASCRIPT END -->
+
+    
 
     <!-- Header Section -->
     <header class="shiny-header">
