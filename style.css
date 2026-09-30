@@ -545,4 +545,7 @@ section {
 .iti__country:hover, .iti__country.iti__highlight {
     background-color: rgba(255, 255, 255, 0.1) !important;
 }
+/* YEH MASTER Z-INDEX HAI - Dropdown ko har cheez ke aage lane ke liye */
+.iti--container {
+    z-index: 999999 !important; 
 }
