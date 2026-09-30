@@ -515,8 +515,9 @@ section {
 
 .iti {
     width: 100%;
+    position: relative;
+    z-index: 99999; /* Isse ye mobile par popup ke bhi upar khulega */
 }
-
 .iti__input {
     width: 100% !important;
     padding: 12px !important;
