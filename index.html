@@ -233,10 +233,11 @@
         const iti = window.intlTelInput(phoneInputField, {
             initialCountry: "in", 
             separateDialCode: true,
-            dropdownContainer: document.body, // YEH LIST KO UPAR KHOLTA HAI
+            
+            // YAHAN SE 'dropdownContainer' WALI LINE DELETE KAR DI GAYI HAI
+            
             utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
         });
-
         // Sirf numbers type karne dena
         phoneInputField.addEventListener("input", function() {
             this.value = this.value.replace(/[^0-9]/g, '');
