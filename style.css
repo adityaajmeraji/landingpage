@@ -309,7 +309,7 @@ section {
 }
 
 /* ========================================================= */
-/* Responsive - (Yahan bracket ki galti sudhar di gayi hai) */
+/* Responsive Settings */
 /* ========================================================= */
 @media (max-width: 768px) {
     .main-title { font-size: 2.5em; }
@@ -350,7 +350,7 @@ section {
     overflow: hidden;
     scroll-snap-align: center;
     background-color: #000;
-    padding: 0; /* Removing padding from standard cards */
+    padding: 0; 
     border: none;
 }
 
@@ -500,6 +500,11 @@ section {
     transition: 0.3s;
 }
 
+.popup-content button:hover {
+    transform: scale(1.03);
+    box-shadow: 0 0 25px var(--gold-light);
+}
+
 /* ========================================================= */
 /* Advanced Phone Input Styles */
 /* ========================================================= */
@@ -515,7 +520,7 @@ section {
 .iti__input {
     width: 100% !important;
     padding: 12px !important;
-    padding-left: 50px !important; /* Flag ke liye jagah */
+    padding-left: 50px !important; 
     background: rgba(0, 0, 0, 0.4) !important;
     border: 1px solid var(--gold-dark) !important;
     border-radius: 6px !important;
@@ -534,10 +539,8 @@ section {
     border: 1px solid var(--gold-dark) !important;
     font-family: 'Poppins', sans-serif;
     
-    /* YEH LINE SABSE ZAROORI HAI - Dropdown ko popup ke upar laane ke liye */
+    /* Z-Index Dropdown ke liye */
     z-index: 99999 !important; 
-    
-    /* List ko screen se bahar jane se rokne ke liye */
     max-width: 300px;
     white-space: normal;
 }
@@ -545,6 +548,7 @@ section {
 .iti__country:hover, .iti__country.iti__highlight {
     background-color: rgba(255, 255, 255, 0.1) !important;
 }
+
 /* YEH MASTER Z-INDEX HAI - Dropdown ko har cheez ke aage lane ke liye */
 .iti--container {
     z-index: 999999 !important; 
