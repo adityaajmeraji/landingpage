@@ -181,13 +181,18 @@
             </p>
         </div>
     </div>
+    
 
 
-    <!-- ============================================== -->
+  <!-- ============================================== -->
     <!-- JAVASCRIPT SECTION (Slider + Popup dono yahan) -->
     <!-- ============================================== -->
+
+    <!-- NAYA: intl-tel-input JS Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script>
+
     <script>
-        // ------------------ SLIDER SCRIPT ------------------ //
+        // ------------------ SLIDER SCRIPT (Isko change nahi kiya hai) ------------------ //
         const slider = document.getElementById('mySlider');
         const prevBtn = document.querySelector('.prev-btn');
         const nextBtn = document.querySelector('.next-btn');
@@ -201,14 +206,6 @@
         nextBtn.addEventListener('click', () => {
             slider.scrollBy({ left: scrollAmount, behavior: 'smooth' });
         });
-        // Naya Code: Footer button click par popup open karna
-        const footerBtn = document.getElementById('footerRegisterBtn');
-        if (footerBtn) {
-            footerBtn.addEventListener('click', function(e) {
-                e.preventDefault(); // Page ko upar jump karne se rokega
-                popup.style.display = 'flex';
-            });
-        }
 
         slider.addEventListener('scroll', () => {
             let index = Math.round(slider.scrollLeft / scrollAmount);
@@ -219,33 +216,64 @@
             dots[index].classList.add('active');
         });
 
-        // ------------------ POPUP FORM SCRIPT ------------------ //
+        // ------------------ POPUP FORM SCRIPT (Naya Wala) ------------------ //
         const popup = document.getElementById('leadPopup');
         const closeBtn = document.getElementById('closePopup');
         const form = document.getElementById('googleSheetForm');
         const submitBtn = document.getElementById('submitBtn');
         const successMsg = document.getElementById('successMsg');
+        
+        // Phone input setup
+        const phoneInputField = document.querySelector("#mobileNumber");
+        const errorMsg = document.querySelector("#error-msg");
+        const finalPhoneInput = document.querySelector("#finalPhone");
 
-        // YAHAN APNA GOOGLE SHEET WALA LAMBA URL DALEIN (Quote marks ke andar)
-        const scriptURL = 'MERA_LAMBA_URL_YAHAN_PASTE_KAREIN'; 
+        // Country code dropdown aur length check setup
+        const iti = window.intlTelInput(phoneInputField, {
+            initialCountry: "in", 
+            separateDialCode: true,
+            utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
+        });
 
-        window.onload = function() {
-            setTimeout(function() {
+        // Sirf numbers type karne dena
+        phoneInputField.addEventListener("input", function() {
+            this.value = this.value.replace(/[^0-9]/g, '');
+            errorMsg.style.display = "none"; 
+        });
+
+        // Footer button par click karne se popup khulega
+        const footerBtn = document.getElementById('footerRegisterBtn');
+        if (footerBtn) {
+            footerBtn.addEventListener('click', function(e) {
+                e.preventDefault(); 
                 popup.style.display = 'flex';
-            }, 1000); 
+            });
+        }
+
+        // 1 second baad automatic popup khulna
+        window.onload = function() {
+            setTimeout(function() { popup.style.display = 'flex'; }, 1000); 
         };
 
-        closeBtn.onclick = function() {
-            popup.style.display = 'none';
-        }
+        // Close dabane par band karna
+        closeBtn.onclick = function() { popup.style.display = 'none'; }
+
+        // YAHAN APNA COPY KIYA HUA GOOGLE SHEET WALA URL DALEIN
+        const scriptURL = 'MERA_LAMBA_URL_YAHAN_PASTE_KAREIN'; 
 
         form.addEventListener('submit', e => {
             e.preventDefault(); 
             
-            // Country code aur number ko jod kar hidden input me set karna
-            const code = document.getElementById('countryCode').value;
-            const number = document.getElementById('mobileNumber').value;
-            document.getElementById('finalPhone').value = code + " " + number;
+            // Validation: Number galat hone par rokna
+            if (!iti.isValidNumber()) {
+                errorMsg.style.display = "block";
+                phoneInputField.style.border = "1px solid red";
+                return; 
+            }
+
+            // Valid hone par form aage badhana
+            phoneInputField.style.border = "1px solid var(--gold-dark)";
+            finalPhoneInput.value = iti.getNumber(); 
 
             submitBtn.innerHTML = "Submitting...";
             submitBtn.disabled = true;
@@ -255,11 +283,10 @@
                     successMsg.style.display = "block"; 
                     form.reset(); 
                     
-                    // Button ka text change
                     submitBtn.innerHTML = "Redirecting to WhatsApp...";
                     
-                    // Form submit hone ke 1.5 seconds baad WhatsApp Group par bhejna
                     setTimeout(() => {
+                        // YAHAN APNA WHATSAPP GROUP LINK DALEIN
                         window.location.href = "HTTPS://CHAT.WHATSAPP.COM/AAPKA_GROUP_LINK_YAHAN";
                     }, 1500);
                 })
