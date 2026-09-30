@@ -229,12 +229,16 @@
         const finalPhoneInput = document.querySelector("#finalPhone");
 
         // Country code dropdown aur length check setup
+        // Country code dropdown aur length check setup
         const iti = window.intlTelInput(phoneInputField, {
             initialCountry: "in", 
             separateDialCode: true,
+            
+            // YEH NAYI LINE HAI - Jo list ko popup ke bahar open karegi
+            dropdownContainer: document.body, 
+            
             utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
         });
-
         // Sirf numbers type karne dena
         phoneInputField.addEventListener("input", function() {
             this.value = this.value.replace(/[^0-9]/g, '');
