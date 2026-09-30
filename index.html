@@ -6,6 +6,8 @@
     <title>Nakshatra Awwakening - Premium Sound Healing Course</title>
     <!-- CSS Import -->
     <link rel="stylesheet" href="style.css">
+    <!-- intl-tel-input CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/css/intlTelInput.css"/>
     <!-- Google Fonts for Premium Look -->
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
@@ -160,19 +162,16 @@
             <form id="googleSheetForm" name="google-sheet-form">
                 <input type="text" name="Name" placeholder="Full Name" required>
                 <!-- NAYA: Phone Input with Country Code -->
-            <div class="phone-box">
-                <select id="countryCode">
-                    <option value="+91">🇮🇳 +91</option>
-                    <option value="+1">🇺🇸 +1</option>
-                    <option value="+44">🇬🇧 +44</option>
-                    <option value="+971">🇦🇪 +971</option>
-                    <option value="+61">🇦🇺 +61</option>
-                </select>
-                <!-- oninput function sirf numbers type karne dega -->
-                <input type="tel" id="mobileNumber" placeholder="WhatsApp Number" minlength="10" maxlength="15" required oninput="this.value = this.value.replace(/[^0-9]/g, '')">
-                <!-- Ye hidden input sheet me pura number bhejega -->
-                <input type="hidden" name="Phone" id="finalPhone">
-            </div>
+                
+                <!-- NAYA: Phone Input with Auto Country Flags -->
+                <div class="phone-box" style="text-align: left;">
+                    <input type="tel" id="mobileNumber" placeholder="WhatsApp Number" required>
+                    <!-- Ye hidden input sheet me pura number bhejega -->
+                    <input type="hidden" name="Phone" id="finalPhone">
+                    <!-- Error message box -->
+                    <span id="error-msg" style="color: #ff4d4d; display: none; font-size: 13px; margin-top: 5px; font-weight: bold;">Invalid number for this country</span>
+                </div>
+                    
                 <input type="email" name="Email" placeholder="Email Address" required>
                 <button type="submit" id="submitBtn">Submit</button>
             </form>
