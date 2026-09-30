@@ -4,10 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nakshatra Awwakening - Premium Sound Healing Course</title>
+    
     <!-- CSS Import -->
     <link rel="stylesheet" href="style.css">
+    
     <!-- intl-tel-input CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/css/intlTelInput.css"/>
+    
     <!-- Google Fonts for Premium Look -->
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
@@ -161,9 +164,8 @@
             
             <form id="googleSheetForm" name="google-sheet-form">
                 <input type="text" name="Name" placeholder="Full Name" required>
-                <!-- NAYA: Phone Input with Country Code -->
                 
-                <!-- NAYA: Phone Input with Auto Country Flags -->
+                <!-- Phone Input with Auto Country Flags -->
                 <div class="phone-box" style="text-align: left;">
                     <input type="tel" id="mobileNumber" placeholder="WhatsApp Number" required>
                     <!-- Ye hidden input sheet me pura number bhejega -->
@@ -181,19 +183,17 @@
             </p>
         </div>
     </div>
-    
 
 
-  <!-- ============================================== -->
+    <!-- ============================================== -->
     <!-- JAVASCRIPT SECTION (Slider + Popup dono yahan) -->
     <!-- ============================================== -->
 
-    <!-- NAYA: intl-tel-input JS Library -->
-    
+    <!-- intl-tel-input JS Library -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script>
 
     <script>
-        // ------------------ SLIDER SCRIPT (Isko change nahi kiya hai) ------------------ //
+        // ------------------ SLIDER SCRIPT ------------------ //
         const slider = document.getElementById('mySlider');
         const prevBtn = document.querySelector('.prev-btn');
         const nextBtn = document.querySelector('.next-btn');
@@ -217,7 +217,7 @@
             dots[index].classList.add('active');
         });
 
-        // ------------------ POPUP FORM SCRIPT (Naya Wala) ------------------ //
+        // ------------------ POPUP FORM SCRIPT ------------------ //
         const popup = document.getElementById('leadPopup');
         const closeBtn = document.getElementById('closePopup');
         const form = document.getElementById('googleSheetForm');
@@ -230,16 +230,13 @@
         const finalPhoneInput = document.querySelector("#finalPhone");
 
         // Country code dropdown aur length check setup
-        // Country code dropdown aur length check setup
         const iti = window.intlTelInput(phoneInputField, {
             initialCountry: "in", 
             separateDialCode: true,
-            
-            // YEH NAYI LINE HAI - Jo list ko popup ke bahar open karegi
-            dropdownContainer: document.body, 
-            
+            dropdownContainer: document.body, // YEH LIST KO UPAR KHOLTA HAI
             utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
         });
+
         // Sirf numbers type karne dena
         phoneInputField.addEventListener("input", function() {
             this.value = this.value.replace(/[^0-9]/g, '');
