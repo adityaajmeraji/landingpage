@@ -281,7 +281,19 @@
             submitBtn.innerHTML = "Submitting...";
             submitBtn.disabled = true;
 
-            fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+            // --- NAYA UTM TRACKING CODE START ---
+            const formData = new FormData(form);
+            const urlParams = new URLSearchParams(window.location.search);
+
+            // URL se UTMs nikal kar formData mein jodna
+            formData.append('utm_source', urlParams.get('utm_source') || '');
+            formData.append('utm_medium', urlParams.get('utm_medium') || '');
+            formData.append('utm_campaign', urlParams.get('utm_campaign') || '');
+            formData.append('utm_term', urlParams.get('utm_term') || '');
+            formData.append('utm_content', urlParams.get('utm_content') || '');
+            // --- NAYA UTM TRACKING CODE END ---
+
+            fetch(scriptURL, { method: 'POST', body: formData })
                 .then(response => {
                     successMsg.style.display = "block"; 
                     form.reset(); 
