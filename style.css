@@ -499,6 +499,34 @@ section {
     box-shadow: 0 0 15px rgba(184, 134, 11, 0.4);
     transition: 0.3s;
 }
+/* Phone Number & Country Code Styles */
+.phone-box {
+    display: flex;
+    gap: 10px;
+    margin: 10px 0;
+}
+
+.phone-box select {
+    width: 35%;
+    padding: 12px;
+    background: rgba(0, 0, 0, 0.4);
+    border: 1px solid var(--gold-dark);
+    border-radius: 6px;
+    color: #fff;
+    font-family: 'Poppins', sans-serif;
+    outline: none;
+    cursor: pointer;
+}
+
+.phone-box select option {
+    background-color: var(--dark-green);
+    color: #fff;
+}
+
+.phone-box input {
+    width: 65% !important;
+    margin: 0 !important; 
+}
 
 .popup-content button:hover {
     transform: scale(1.03);
