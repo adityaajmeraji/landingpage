@@ -242,6 +242,12 @@
 
         form.addEventListener('submit', e => {
             e.preventDefault(); 
+            
+            // Country code aur number ko jod kar hidden input me set karna
+            const code = document.getElementById('countryCode').value;
+            const number = document.getElementById('mobileNumber').value;
+            document.getElementById('finalPhone').value = code + " " + number;
+
             submitBtn.innerHTML = "Submitting...";
             submitBtn.disabled = true;
 
@@ -249,12 +255,14 @@
                 .then(response => {
                     successMsg.style.display = "block"; 
                     form.reset(); 
-                    submitBtn.innerHTML = "Submit";
-                    submitBtn.disabled = false;
                     
+                    // Button ka text change
+                    submitBtn.innerHTML = "Redirecting to WhatsApp...";
+                    
+                    // Form submit hone ke 1.5 seconds baad WhatsApp Group par bhejna
                     setTimeout(() => {
-                        popup.style.display = "none";
-                    }, 3000);
+                        window.location.href = "HTTPS://CHAT.WHATSAPP.COM/AAPKA_GROUP_LINK_YAHAN";
+                    }, 1500);
                 })
                 .catch(error => {
                     console.error('Error!', error.message);
