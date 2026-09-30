@@ -533,6 +533,13 @@ section {
     color: #fff !important;
     border: 1px solid var(--gold-dark) !important;
     font-family: 'Poppins', sans-serif;
+    
+    /* YEH LINE SABSE ZAROORI HAI - Dropdown ko popup ke upar laane ke liye */
+    z-index: 99999 !important; 
+    
+    /* List ko screen se bahar jane se rokne ke liye */
+    max-width: 300px;
+    white-space: normal;
 }
 
 .iti__country:hover, .iti__country.iti__highlight {
