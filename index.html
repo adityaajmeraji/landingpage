@@ -159,7 +159,20 @@
             
             <form id="googleSheetForm" name="google-sheet-form">
                 <input type="text" name="Name" placeholder="Full Name" required>
-                <input type="tel" name="Phone" placeholder="WhatsApp Number" required>
+                <!-- NAYA: Phone Input with Country Code -->
+            <div class="phone-box">
+                <select id="countryCode">
+                    <option value="+91">🇮🇳 +91</option>
+                    <option value="+1">🇺🇸 +1</option>
+                    <option value="+44">🇬🇧 +44</option>
+                    <option value="+971">🇦🇪 +971</option>
+                    <option value="+61">🇦🇺 +61</option>
+                </select>
+                <!-- oninput function sirf numbers type karne dega -->
+                <input type="tel" id="mobileNumber" placeholder="WhatsApp Number" minlength="10" maxlength="15" required oninput="this.value = this.value.replace(/[^0-9]/g, '')">
+                <!-- Ye hidden input sheet me pura number bhejega -->
+                <input type="hidden" name="Phone" id="finalPhone">
+            </div>
                 <input type="email" name="Email" placeholder="Email Address" required>
                 <button type="submit" id="submitBtn">Submit</button>
             </form>
